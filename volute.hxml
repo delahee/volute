@@ -1,0 +1,5 @@
+-cp src
+-swf9 bin/volute.swf
+-swf-header 800:600:60:FFFFFF
+-swf-version 10
+-main Main
