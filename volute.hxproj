@@ -11,7 +11,8 @@
     <movie version="10" />
     <movie minorVersion="0" />
     <movie platform="Flash Player" />
-    <movie background="#FFFFFF" />
+    <movie background="#000000" />
+    <movie preferredSDK=";;D:\workspace\motionTools\haxe\" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
