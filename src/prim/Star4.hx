@@ -1,6 +1,6 @@
 package prim;
 
-import Type;
+import Types;
 
 /**
  * ...
@@ -9,7 +9,7 @@ import Type;
 
 class Star4 extends Shape
 {
-	static inline var vtx = [
+	static var vtx = [
 	[1,2],	
 	[3,3],	
 	[1,4], 	
