@@ -20,8 +20,14 @@ class Main
 		var fl = haxe.EnumFlags.ofInt(0);
 		fl.set( FULLSCREEN );
 		bloomNode = new postfx.Bloom( cur, fl );
+		
+		//bloomNode.setBlurFactors( 12 , 1 );
+		//bloomNode.rtRes = 0.5;
+		//bloomNode.nbPowPass = 1;
+		
 		bloomNode.setBlurFactors( 12 , 1 );
-		bloomNode.nbPowPass = 1;
+		bloomNode.nbPowPass = 0;
+		bloomNode.rtRes = 0.25;
 	}
 	
 	public function addChild(c) return flash.Lib.current.addChild(c)
