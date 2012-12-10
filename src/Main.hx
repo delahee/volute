@@ -14,7 +14,8 @@ class Main
 	
 	public function new() { 
 		addChild( new com.Stats() );
-		cur = new scene.FallingStar();
+		//cur = new scene.FallingStar();
+		cur = new scene.ThrowingStars();
 		addChild(cur);
 		
 		var fl = haxe.EnumFlags.ofInt(0);
@@ -25,9 +26,9 @@ class Main
 		//bloomNode.rtRes = 0.5;
 		//bloomNode.nbPowPass = 1;
 		
-		bloomNode.setBlurFactors( 12 , 1 );
+		bloomNode.setBlurFactors( 8 , 1 );
 		bloomNode.nbPowPass = 0;
-		bloomNode.rtRes = 0.25;
+		bloomNode.rtRes = 0.5;
 	}
 	
 	public function addChild(c) return flash.Lib.current.addChild(c)

@@ -17,7 +17,7 @@ using com.Ex;
 enum BloomFlags
 {
 	FULLSCREEN;
-	ENABLE_BLUR;
+	BLOOM_ONLY;
 }
 
 class Bloom extends scene.Scene
@@ -40,7 +40,6 @@ class Bloom extends scene.Scene
 	var bmpResult : Bitmap;
 	var bmpRender : Bitmap;
 	var mat : flash.geom.Matrix;
-	var imat : flash.geom.Matrix;
 	
 	// each pass multiplies shine
 	//0 for flat bright
@@ -78,8 +77,6 @@ class Bloom extends scene.Scene
 		mat = new flash.geom.Matrix();
 		mat.identity();
 		
-		imat = new flash.geom.Matrix();
-		imat.identity();
 		super();
 	}
 	
@@ -136,8 +133,9 @@ class Bloom extends scene.Scene
 			
 		result.draw( render, flash.display.BlendMode.MULTIPLY); //Restore color
 
-		if( blurFilter != null)
-			result.applyFilter( result, result.rect, Const.Point_ZERO, blurFilter);
+		if( blurFilter != null) result.applyFilter( result, result.rect, Const.Point_ZERO, blurFilter);
+			
+		bmpRender.visible = !fl.has( BLOOM_ONLY );
 	}
 	
 	public function drawIndirect()
@@ -145,8 +143,6 @@ class Bloom extends scene.Scene
 		mat.identity();
 		mat.scale( rtRes, rtRes);
 		
-		imat.identity();
-		imat.scale( 1.0/rtRes,1.0/rtRes);
 		
 		result.fillRect(result.rect, 0x0);
 		render.fillRect(render.rect, 0x0);
@@ -159,7 +155,9 @@ class Bloom extends scene.Scene
 		for ( i in 0...nbPowPass) result.draw( result, flash.display.BlendMode.MULTIPLY); //power it
 		result.draw( render, mat,flash.display.BlendMode.MULTIPLY); //Restore color
 
-		if( blurFilter != null)	result.applyFilter( result, result.rect, Const.Point_ZERO, blurFilter);
+		if ( blurFilter != null)	result.applyFilter( result, result.rect, Const.Point_ZERO, blurFilter);
+		
+		bmpRender.visible = !fl.has( BLOOM_ONLY );
 	}
 	
 	public override function update(_)
